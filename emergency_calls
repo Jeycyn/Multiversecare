@@ -1,0 +1,14 @@
+<?php
+include 'config.php';
+
+$patientName = $_POST['name'];
+$patientPhone = $_POST['phone'];
+$hospitalName = $_POST['hospital'];
+$reason = $_POST['reason'];
+
+$stmt = $conn->prepare("INSERT INTO emergency_calls (patient_name, patient_phone, hospital_name, reason) VALUES (?, ?, ?, ?)");
+$stmt->bind_param("ssss", $patientName, $patientPhone, $hospitalName, $reason);
+$stmt->execute();
+
+echo "success";
+?>
